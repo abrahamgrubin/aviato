@@ -1,28 +1,58 @@
-<div class="jumbotron">
-  <h1>Aviato</h1>
+<div id= "myCarousel" class="carousel slide">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to= "0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to= "1"></li>
+    <li data-target="#myCarousel" data-slide-to= "2"></li>
+  </ol>
+
+<div class="carousel-inner">
+
+  <div class="item active">
+    <img src="https://can-do-health.org/wp-content/uploads/2013/09/Slider_IMG_6521_1920X740.jpg" alt="food" class="img-responsive">
+    <div class="carousel-caption">
+      <h1 class="welcome">Welcome to Aviato!</h1>
+    </div>
+  </div>
+
+  <div class="item">
+    <img src="http://medias.martinique.ingenie.fr/images/info_pages/multitailles/1920x1440_martinique-salines-1920x740-35.jpg" alt="beech" class="img-responsive">
+    <div class="carousel-caption">
+      <h1>Aviato</h1>
+      <p>Comment on your friends bookmarks</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <img src="http://farm4.staticflickr.com/3053/5870438604_69744f2774_o.jpg" alt="biking" class="img-responsive">
+    <div class="carousel-caption" id="bike">
+      <h1>#Aviato</h1>
+    </div>
+  </div>
+
+</div>
+
+<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+  <span class ="icon-prev"></span>
+</a>
+
+<a class="carousel-control right" href="#myCarousel" data-slide="next">
+  <span class ="icon-next"></span>
+</a>
+
+</div>
+
+  <h1 class="title">Aviato</h1>
   <p>Social Bookmarking tool</p>
   <p>
       <% if current_user %>
       <% else %>
       <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary' %>
-      <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
        or 
       <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
   </p>
   <% end %>
 </div>
 
-<div class="row">
-  <div class="col-md-4">
-    <h2>Hashtag different items to share topics with friends</h2>
-    <p>Anything you find on the internet that is useful or just cool</p>
-  </div>
-  <div class="col-md-4">
-    <h2>Talk about it</h2>
-    <p>Comment on your friends bookmarks</p>
-  </div>
-  <div class="col-md-4">
-    <h2>Intergrated with facebook</h2>
-    <p>SHare with facebook friends</p>
-  </div>
-</div>
+    
+    
+  

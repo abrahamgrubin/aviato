@@ -7,8 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header class="navbar navbar-static-top bs-docs-nav">
+    <ul class="nav nav-tabs" role="tablist"> 
+        <li><a href="#">Home</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">My Bookmarks</a></li>
+      <li><a href="#">What is hip?</a></li>
+    </ul>
+  </header>
   <div class="container">
-  	<ul>
   		<ul class="nav nav-tabs">
   			<li><% link_to "Aviato", new_user_registration_path %></li>
   			<div class="pull-right user-info">
