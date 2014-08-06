@@ -10,6 +10,7 @@ gem 'rails', '4.0.5'
  
  group :development do
    gem 'sqlite3'
+   gem 'quiet_assets'
  end
 
 gem 'figaro'

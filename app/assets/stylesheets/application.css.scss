@@ -1,5 +1,6 @@
 @import "bootstrap";
 @import "bootstrap-sprockets";
+
 .user-info {
    margin-top: 9px;
  }
@@ -24,5 +25,9 @@ body {
 
 div#bike {
 	color: #160B33;
+}
+
+input {
+  color: black;
 }
 
