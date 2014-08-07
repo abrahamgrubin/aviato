@@ -12,13 +12,11 @@
         <li><a href="#">Home</a></li>
       <li><a href="#">Profile</a></li>
       <li><%= link_to 'My bookmarks',  bookmarks_path %></li>
-      <li><a href="#">What is hip?</a></li>
-    </ul>
-  </header>
-  <div class="container">
-  		<ul class="nav nav-tabs">
-  			<li><% link_to "Aviato", new_user_registration_path %></li>
-  			<div class="pull-right user-info">
+      <li><%= link_to 'What is hip?', hashtags_path %></li>
+
+      <li><ul class="nav nav-tabs">
+        <li><% link_to "Aviato", new_user_registration_path %></li>
+        <div class="pull-right user-info">
            <% if current_user %>
              Hello <%= current_user.email %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
            <%= image_tag(current_user.image_url) %>
@@ -26,9 +24,10 @@
 
          </div>
 
-  		</ul>
+      </ul></li></ul>
+  </header>
+  	
 
 <%= yield %>
-   </div>
 </body>
 </html>
