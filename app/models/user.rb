@@ -5,6 +5,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
+  def self.numbers
+    self.select('users.*')
+    .select('COUNT(DISTINCT bookmarks.id) AS bookmarks_count')
+    .order('rank DESC')
+  end
+  
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.email = auth.info.email
