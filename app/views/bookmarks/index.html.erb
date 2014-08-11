@@ -1,2 +1,7 @@
-<h1>Index</h1>
-<button type="button" class="btn btn-primary"><%= link_to 'Create Bookmark', new_bookmark_path %></button>
+<h1>My Bookmarks</h1>
+  <ul>
+  	<% @bookmark.each do |n| %>
+  	<li><%= n.title %></li>
+  	<% end %>
+  </ul>
+<button type="button" class="btn btn-custom"><%= link_to 'Create Bookmark', new_bookmark_path %></button>
