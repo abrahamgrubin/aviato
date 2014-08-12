@@ -1,3 +1,8 @@
-<h1><%= @bookmark.title %></h1>
+<% if @bookmark.title.include?("http://") %>
+  <%= link_to @bookmark.title, "#{@bookmark.title}" %>
+<% else %>
+<h1><%= link_to @bookmark.title, "http://#{@bookmark.title}" %></h1>
+<% end %>
 <h2><%= @bookmark.content %></h2>
+
 <button type="button" class="btn btn-danger"><%= link_to 'Delete Bookmark', @bookmark, method: :delete %></button>

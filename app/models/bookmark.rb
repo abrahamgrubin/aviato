@@ -5,7 +5,7 @@ class Bookmark < ActiveRecord::Base
   after_save :webify
 
   def webify
-  	if title.include?("https://")
+  	if self.title.include?("https://")
   		"#{title}"
   	else
   		"https://#{title}"

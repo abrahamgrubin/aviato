@@ -13,6 +13,7 @@ gem 'rails', '4.0.5'
    gem 'quiet_assets'
  end
 
+
 gem 'figaro'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
