@@ -1,5 +1,7 @@
 class BookmarksController < ApplicationController
  
+  require 'embedly'
+  require 'json'
 
   def index
     @bookmark = current_user.bookmarks
@@ -7,7 +9,9 @@ class BookmarksController < ApplicationController
   
   def show
     @bookmark = current_user.bookmarks.find(params[:id])
+    @url = embedly_api.oembed(:url => @bookmark.title).first 
   end  
+
   def create
     @bookmark = current_user.bookmarks.build(params.require(:bookmark).permit(:title, :content))
     if @bookmark.save
@@ -31,5 +35,12 @@ class BookmarksController < ApplicationController
       flash[:error] = "There was an error deleting the bookmark."
       render :index
     end
-  end 
+  end
+
+  private 
+
+  def embedly_api
+    Embedly::API.new :key => ENV['EMBEDLY_KEY']
+  end
+
 end

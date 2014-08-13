@@ -3,7 +3,8 @@
   <% @hashtagged.each do |hashtagged| %>
     <%= render_hashtaggable hashtagged %>
   <% end -%>
-<% else -%>
+<% else %>
   <p>There is no match for the <em><%= params[:hashtag] %></em> hashtag.</p>
-<% end -%>
+<% end %>
 
+<button type="button" class="btn btn-danger"><%= link_to 'Delete Hashtag', destroy_hashtag_path(hashtag: @hashtag.name), method: :delete %></button>

@@ -1,8 +1,14 @@
+
 <% if @bookmark.title.include?("http://") %>
   <%= link_to @bookmark.title, "#{@bookmark.title}" %>
 <% else %>
-<h1><%= link_to @bookmark.title, "http://#{@bookmark.title}" %></h1>
+  <h1><%= link_to @bookmark.title, "http://#{@bookmark.title}" %></h1>
 <% end %>
 <h2><%= @bookmark.content %></h2>
+<% if @url.html.present? %>
+  <%= @url.html.html_safe %>
+<% else %>
+  <%= image_tag("#{@url.thumbnail_url}") %>
+<% end %>
 
 <button type="button" class="btn btn-danger"><%= link_to 'Delete Bookmark', @bookmark, method: :delete %></button>
