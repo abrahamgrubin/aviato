@@ -13,7 +13,7 @@ class HashtagsController < ApplicationController
      @hashtag = SimpleHashtag::Hashtag.find_by_name(params[:hashtag])
      if @hashtag.destroy
      	flash[:notice] = "\"#{@hashtag}\" was deleted successfully."
-      redirect_to bookmarks_path
+      redirect_to hashtags_path
     else
       flash[:error] = "There was an error deleting the hashtag."
       render :index

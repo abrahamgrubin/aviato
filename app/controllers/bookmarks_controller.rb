@@ -10,6 +10,7 @@ class BookmarksController < ApplicationController
   def show
     @bookmark = current_user.bookmarks.find(params[:id])
     @url = embedly_api.oembed(:url => @bookmark.title).first 
+    @parse_url =  get_host_without_www(@bookmark.title)
   end  
 
   def create
@@ -23,6 +24,20 @@ class BookmarksController < ApplicationController
   
   def new 
   	@bookmark = Bookmark.new
+  end
+   
+   def update
+    @bookmark = current_user.bookmarks.find(params[:id])
+    if @bookmark.update_attributes(params.require(:bookmark).permit(:title, :content))
+      redirect_to @bookmark
+    else
+      flash[:error] = "Error saving topic. Please try again"
+      render :edit
+    end
+  end
+  
+  def edit 
+    @bookmark = current_user.bookmarks.find(params[:id])
   end
 
   def destroy
@@ -43,4 +58,9 @@ class BookmarksController < ApplicationController
     Embedly::API.new :key => ENV['EMBEDLY_KEY']
   end
 
+  def get_host_without_www(url)
+    url = "http://#{url}" if URI.parse(url).scheme.nil?
+    host = URI.parse(url).host.downcase
+    host.start_with?('www.') ? host[4..-1] : host
+  end
 end

@@ -7,27 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header class="navbar navbar-static-top bs-docs-nav">
+  <header>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-text navbar-right">
+           <% if current_user %>
+             Signed in as <%= current_user.email %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+           <%= image_tag(current_user.image_url) %>
+           <% end %>
+
+    </div>
+
     <ul class="nav nav-tabs" role="tablist"> 
         
       <li><%= link_to 'Home', '/' %></li>
        
-        <% if current_user %>
-          <li><a href="#">Profile</a></li>      
+        <% if current_user %>     
           <li><%= link_to 'My bookmarks', bookmarks_path %></li>      
           <li><% link_to 'My bookmarks', new_user_registration_path %></li>   
           <li><%= link_to 'What is hip?', hashtags_path %></li>
       <% else %>
       <% end %>
-      <div class="navbar-text navbar-right">
-           <% if current_user %>
-             Hello <%= current_user.email %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-           <%= image_tag(current_user.image_url) %>
-           <% end %>
+      
+  </nav>
 
-         </div>
-
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-pills">
         <li><% link_to "Aviato", new_user_registration_path %></li>
         
       </ul>
@@ -53,5 +56,10 @@
   	
 
 <%= yield %>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <p>Created By Abraham Rubin</p>
+</nav>
+
 </body>
 </html>

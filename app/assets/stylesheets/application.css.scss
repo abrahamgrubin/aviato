@@ -1,26 +1,37 @@
 @import "bootstrap";
 @import "bootstrap-sprockets";
 
-.user-info {
-   margin-top: 9px;
- }
- 
- .nav {
-   margin-top: 5px;
- }
+.thumb {
+  height:auto;
+  width:auto; 
+  max-width: 300px; 
+  max-height: 300px; 
+  -webkit-border-radius: 30px 30px 30px 30px;
+  -moz-border-radius: 30px 30px 30px 30px;
+  border-radius: 30px 30px 30px 30px;
+     }
+
+
+.nav {
+  margin-top: 35px;
+}
+
+.navbar {
+background-color: #202020;
+font-color: blue;
+font-size: 20px;
+}
+
 
 header {
 	background-color: #202020;
+  color: white;
 }
 
-.jumbotron {
-	background-color:#4D4D4D;
-	color: white;
-}
 
 body {
-	background-color: #160B33;
-	color: white;
+  background-color: #160B33;
+  color: white;
 }
 
 div#bike {
@@ -30,6 +41,7 @@ div#bike {
 input {
   color: black;
 }
+
 
 .btn-custom {
   background-color: hsl(36, 100%, 40%) !important;
@@ -48,3 +60,5 @@ input {
   -webkit-font-smoothing: antialiased;
 }
 
+
+  

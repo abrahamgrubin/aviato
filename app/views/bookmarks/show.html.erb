@@ -1,14 +1,25 @@
 
-<% if @bookmark.title.include?("http://") %>
-  <%= link_to @bookmark.title, "#{@bookmark.title}" %>
-<% else %>
-  <h1><%= link_to @bookmark.title, "http://#{@bookmark.title}" %></h1>
-<% end %>
-<h2><%= @bookmark.content %></h2>
-<% if @url.html.present? %>
-  <%= @url.html.html_safe %>
-<% else %>
-  <%= image_tag("#{@url.thumbnail_url}") %>
-<% end %>
-
-<button type="button" class="btn btn-danger"><%= link_to 'Delete Bookmark', @bookmark, method: :delete %></button>
+<div class="container">
+  <div class="row">
+	<div class="col-md-6">
+      <p class="lead"><%= @bookmark.content %></p>
+    </div>
+    <div class="col-md-6">
+      <% if @url.html.present? %>
+        <p><%= @url.html.html_safe %></p>
+      <% else %>
+        <%= image_tag ("#{@url.thumbnail_url}"), class: "thumb" %>
+      <% end %>
+      <% if @bookmark.title.include?("http://") || ("https://") %>
+        <h1><%= link_to @parse_url, "#{@bookmark.title}" %></h1>
+      <% else %>
+        <h1><%= link_to @parse_url, "http://#{@bookmark.title}" %></h1>
+      <% end %>
+        
+          </br>
+          </br>
+          <button type="button" class="btn btn-custom btn-lg btn-block"><%= link_to 'Edit Bookmark', edit_bookmark_path %></button>
+          <button type="button" class="btn btn-danger btn-lg btn-block"><%= link_to 'Delete Bookmark', @bookmark, method: :delete %></button>
+    </div>
+  </div>
+</div>
