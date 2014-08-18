@@ -11,8 +11,20 @@ gem 'rails', '4.0.5'
  group :development do
    gem 'sqlite3'
    gem 'quiet_assets'
+   gem 'rails_apps_testing'
  end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+end
 
 gem 'figaro'
 gem 'bootstrap-sass', '~> 3.2.0'
