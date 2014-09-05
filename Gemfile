@@ -11,6 +11,7 @@ gem 'rails', '4.0.5'
  group :development do
    gem 'sqlite3'
    gem 'quiet_assets'
+   gem 'rails_apps_testing'
  end
 
 gem 'embedly'
@@ -46,6 +47,18 @@ end
 
 gem 'devise'
 gem 'omniauth-facebook'
+
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

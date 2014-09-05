@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812141845) do
+ActiveRecord::Schema.define(version: 20140903141452) do
 
   create_table "bookmarks", force: true do |t|
     t.string   "title"
@@ -21,25 +21,25 @@ ActiveRecord::Schema.define(version: 20140812141845) do
     t.integer  "user_id"
   end
 
+  create_table "hashtaggings", force: true do |t|
+    t.integer  "bookmark_id"
+    t.integer  "hashtag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hashtaggings", ["bookmark_id"], name: "index_hashtaggings_on_bookmark_id"
+  add_index "hashtaggings", ["hashtag_id"], name: "index_hashtaggings_on_hashtag_id"
+
   create_table "hashtags", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "simple_hashtag_hashtaggings", force: true do |t|
-    t.integer "hashtag_id"
-    t.integer "hashtaggable_id"
-    t.string  "hashtaggable_type"
-  end
-
-  add_index "simple_hashtag_hashtaggings", ["hashtag_id"], name: "index_simple_hashtag_hashtaggings_on_hashtag_id"
-  add_index "simple_hashtag_hashtaggings", ["hashtaggable_id", "hashtaggable_type"], name: "index_hashtaggings_hashtaggable_id_hashtaggable_type"
-
-  create_table "simple_hashtag_hashtags", force: true do |t|
     t.string   "name"
+    t.integer  "bookmark_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "hashtags", ["bookmark_id"], name: "index_hashtags_on_bookmark_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

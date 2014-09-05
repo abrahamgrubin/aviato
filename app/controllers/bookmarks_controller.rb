@@ -1,5 +1,6 @@
 class BookmarksController < ApplicationController
- 
+  respond_to :html, :js
+
   require 'embedly'
   require 'json'
 
@@ -9,17 +10,22 @@ class BookmarksController < ApplicationController
   
   def show
     @bookmark = current_user.bookmarks.find(params[:id])
-    @url = embedly_api.oembed(:url => @bookmark.title).first 
-    @parse_url =  get_host_without_www(@bookmark.title)
+    @title = @bookmark.title
+    @url = embedly_api.oembed(:url => @title).first
+    #@parse_url =  get_host_without_www(@title)
+
   end  
 
   def create
     @bookmark = current_user.bookmarks.build(params.require(:bookmark).permit(:title, :content))
     if @bookmark.save
-      redirect_to bookmarks_path, notice: "Bookmark Saved"
+      hashtags = @bookmark.extract_hashtags
+      hashtags.each { |hashtag| @bookmark.hashtags.create(name: hashtag) }
+      redirect_to @bookmark, notice: "Bookmark Saved"
     else
       flash[:error] = "There was an error saving your bookmark, please try again"
     end 
+
   end
   
   def new 
@@ -50,6 +56,8 @@ class BookmarksController < ApplicationController
       flash[:error] = "There was an error deleting the bookmark."
       render :index
     end
+  
+    
   end
 
   private 
@@ -58,9 +66,9 @@ class BookmarksController < ApplicationController
     Embedly::API.new :key => ENV['EMBEDLY_KEY']
   end
 
-  def get_host_without_www(url)
-    url = "http://#{url}" if URI.parse(url).scheme.nil?
-    host = URI.parse(url).host.downcase
-    host.start_with?('www.') ? host[4..-1] : host
-  end
+  #def get_host_without_www(url)
+    #url = "http://#{url}" if URI.parse(url).scheme.nil?
+    #host = URI.parse(url).host.downcase
+    #host.start_with?('www.') ? host[4..-1] : host
+  #end
 end

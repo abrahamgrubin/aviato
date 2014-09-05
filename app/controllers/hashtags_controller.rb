@@ -1,23 +1,31 @@
 class HashtagsController < ApplicationController
+  require 'embedly'
+  require 'json'
 
-  def index
-    @hashtags = SimpleHashtag::Hashtag.all
+	def create 
+	  
+	end
+
+	def show
+	  @hashtag = Hashtag.find(params[:id])
+	  @bookmark = @hashtag.bookmarks
+	  #@url = embedly_api.oembed(:url => @bookmark.first.title) 
+	end
+    
+    def index
+       @hashtags = current_user.hashtags
+       
+    end 
+	def destroy 
+	end
+
+	def update 
+	end 
+
+ private 
+
+  def embedly_api
+    Embedly::API.new :key => ENV['EMBEDLY_KEY']
   end
 
-  def show
-    @hashtag = SimpleHashtag::Hashtag.find_by_name(params[:hashtag])
-    @hashtagged = @hashtag.hashtaggables if @hashtag
-  end
-  
-  def destroy 
-     @hashtag = SimpleHashtag::Hashtag.find_by_name(params[:hashtag])
-     if @hashtag.destroy
-     	flash[:notice] = "\"#{@hashtag}\" was deleted successfully."
-      redirect_to hashtags_path
-    else
-      flash[:error] = "There was an error deleting the hashtag."
-      render :index
-    end
-  end
-
-end
+end 

@@ -1,10 +1,15 @@
 Aviato::Application.routes.draw do
-
-  get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
-  get "hashtags",            to: "hashtags#index",     as: :hashtags
-  delete "hashtag",             to: "hashtags#destroy",     as: :destroy_hashtag
+ 
+ resources :hashtags, only: [:show, :index, :destroy]
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  
+  resources :bookmarks
+
+  authenticated :user do 
+  	root to: 'bookmarks#index', as: 'authenticated_user'
+  end
+
   root to: 'welcome#index'
   resources :bookmarks
 end
