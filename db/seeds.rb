@@ -14,8 +14,8 @@ Hashtag.destroy_all
 
 u = User.create(email: 'foo@bar.com', password: 'password', name: 'foo')
 
-20.times do
-  hashtags = Faker::HipsterIpsum.words.map { |tag| "##{tag}" }.join(' ')
-  bookmark = u.bookmarks.create(title: Faker::DizzleIpsum.words(5).join(' '), content: hashtags)
+100.times do
+  hashtags = Faker::HipsterIpsum.words.map { |tag| "##{tag.split.join('-')}" }.join(' ')
+  bookmark = u.bookmarks.create(title: Faker::DizzleIpsum.words(5).join(' ').capitalize, content: hashtags)
   HashtagExtractor.new(u, bookmark).create_hashtags
 end

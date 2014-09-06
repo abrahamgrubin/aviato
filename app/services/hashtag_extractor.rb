@@ -14,7 +14,8 @@ class HashtagExtractor
   def create_hashtags
     hashtags = extract_hashtags
     hashtags.each do |hashtag|
-      bookmark.hashtags.create(name: hashtag, user_id: user.id)
+      hashtag = Hashtag.where(name: hashtag).first_or_create
+      bookmark.hashtaggings.create(hashtag_id: hashtag.id)
     end
   end
 
