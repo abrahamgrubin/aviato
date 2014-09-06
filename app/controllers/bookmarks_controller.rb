@@ -22,6 +22,7 @@ class BookmarksController < ApplicationController
     @bookmark = current_user.bookmarks.build(params.require(:bookmark).permit(:title, :content))
     if @bookmark.save
       HashtagExtractor.new(current_user, @bookmark).create_hashtags
+      binding.pry
       redirect_to @bookmark, notice: "Bookmark Saved"
     else
       flash[:error] = "There was an error saving your bookmark, please try again"

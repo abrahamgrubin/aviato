@@ -2,10 +2,11 @@
   <h1>My Bookmarks</h1>
     <ul>
     	<% @bookmarks.each do |bookmark| %>
-    	<li><%= link_to bookmark.title, bookmark %></li>
+    	<h4><%= link_to bookmark.title, bookmark %></h4>
         <%= bookmark.hashtags.each do |hashtag| %>
-          <li><%= link_to hashtag.title, tag_path(hashtag) %></li>
+          <li><%= link_to hashtag.name, tag_path(hashtag) %></li>
       	<% end %>
+      </li>
       <% end %>
     </ul>
 

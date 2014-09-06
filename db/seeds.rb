@@ -16,5 +16,6 @@ u = User.create(email: 'foo@bar.com', password: 'password', name: 'foo')
 
 20.times do
   hashtags = Faker::HipsterIpsum.words.map { |tag| "##{tag}" }.join(' ')
-  u.bookmarks.create(title: Faker::DizzleIpsum.words(5).join(' '), content: hashtags)
+  bookmark = u.bookmarks.create(title: Faker::DizzleIpsum.words(5).join(' '), content: hashtags)
+  HashtagExtractor.new(u, bookmark).create_hashtags
 end
