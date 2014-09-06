@@ -16,15 +16,12 @@ class BookmarksController < ApplicationController
     @bookmark = current_user.bookmarks.find(params[:id])
     @title = @bookmark.title
     @url = embedly_api.oembed(:url => @title).first
-    #@parse_url =  get_host_without_www(@title)
-
   end  
 
   def create
     @bookmark = current_user.bookmarks.build(params.require(:bookmark).permit(:title, :content))
     if @bookmark.save
-      hashtags = @bookmark.extract_hashtags
-      hashtags.each { |hashtag| @bookmark.hashtags.create(name: hashtag) }
+      HashtagExtractor.new(current_user, @bookmark).create_hashtags
       redirect_to @bookmark, notice: "Bookmark Saved"
     else
       flash[:error] = "There was an error saving your bookmark, please try again"
@@ -60,8 +57,6 @@ class BookmarksController < ApplicationController
       flash[:error] = "There was an error deleting the bookmark."
       render :index
     end
-  
-    
   end
 
   private 

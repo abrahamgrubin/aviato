@@ -11,6 +11,7 @@ end
 group :development do
  gem 'sqlite3'
  gem 'quiet_assets'
+ gem 'pry-rails'
  gem 'rails_apps_testing'
 end
 

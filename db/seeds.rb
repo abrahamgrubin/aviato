@@ -6,17 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require 'faker'
+require 'ffaker'
 
 User.destroy_all
 Bookmark.destroy_all
 Hashtag.destroy_all
 
-u = User.new(email: 'foo@bar.com', password: 'password', name: 'foo')
-u.skip_confirmation! && u.save
-
+u = User.create(email: 'foo@bar.com', password: 'password', name: 'foo')
 
 20.times do
-  u.bookmarks.create(title: Faker::DizzleIpsum.words(5), content: "##{Faker::HipsterIpsum.words}")
+  hashtags = Faker::HipsterIpsum.words.map { |tag| "##{tag}" }.join(' ')
+  u.bookmarks.create(title: Faker::DizzleIpsum.words(5).join(' '), content: hashtags)
 end
-
