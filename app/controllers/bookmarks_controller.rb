@@ -5,8 +5,11 @@ class BookmarksController < ApplicationController
   require 'json'
 
   def index
-    if tag = params[:tag]
-      @bookmarks = current_user.bookmarks.where('hashtag LIKE (?)', "%#{tag}%")
+    if hashtag_id = params[:tag]
+      @bookmarks = Bookmark
+        .joins(:hashtaggings)
+        .where(["hashtaggings.hashtag_id = ? AND user_id = ?",
+        hashtag_id, current_user.id])
     else
       @bookmarks = current_user.bookmarks
     end
