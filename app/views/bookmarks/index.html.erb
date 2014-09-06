@@ -3,7 +3,10 @@
   <ul>
   	<% @bookmark.each do |bookmark| %>
   	<li><%= link_to bookmark.title, bookmark %></li>
-  	<% end %>
+      <%= bookmark.hashtags.each do |hashtag| %>
+        <li><%= link_to hashtag.title, tag_path(hashtag) %></li>
+    	<% end %>
+    <% end %>
   </ul>
 
 <button type="button" class="btn btn-custom"><%= link_to 'Create Bookmark', new_bookmark_path %></button>

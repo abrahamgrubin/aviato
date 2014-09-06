@@ -5,7 +5,11 @@ class BookmarksController < ApplicationController
   require 'json'
 
   def index
-    @bookmark = current_user.bookmarks
+    if tag = params[:tag]
+      @bookmarks = current_user.bookmarks.where('hashtag LIKE (?)', "%#{tag}%")
+    else
+      @bookmarks = current_user.bookmarks
+    end
   end 
   
   def show

@@ -7,7 +7,7 @@ class HashtagsController < ApplicationController
 	end
 
 	def show
-	  @hashtag = Hashtag.find(params[:id])
+	  # @hashtag = Hashtag.find(params[:id])
 	  @bookmark = @hashtag.bookmarks
 	  #@url = embedly_api.oembed(:url => @bookmark.first.title) 
 	end
