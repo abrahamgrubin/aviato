@@ -2,7 +2,13 @@
 <h1>My Bookmarks</h1>
   <ul>
   	<% @bookmark.each do |bookmark| %>
+  	
   	<li><%= link_to bookmark.title, bookmark %></li>
+  	  <% bookmark.hashtags.each do |hashtag| %>
+  	  <ul>
+  	    <li><%= hashtag.name %></li>
+  	  </ul>
+  	  <% end %>
   	<% end %>
   </ul>
 

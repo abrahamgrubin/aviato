@@ -12,4 +12,7 @@ Aviato::Application.routes.draw do
 
   root to: 'welcome#index'
   resources :bookmarks
+
+  get 'hashtags/:hashtag', to:'bookmark#index', as: :hashtag
+
 end
