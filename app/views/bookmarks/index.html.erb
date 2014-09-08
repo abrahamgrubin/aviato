@@ -4,6 +4,7 @@
 	<h2><%= link_to bookmark.title, bookmark %></h2>
     <% bookmark.hashtags.each do |hashtag| %>
       <p><%= link_to hashtag.name, tag_path(hashtag) %></p>
+
   	<% end %>
   <% end %>
   <%= link_to 'Create Bookmark', new_bookmark_path %>

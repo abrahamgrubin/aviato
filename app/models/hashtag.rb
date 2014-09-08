@@ -1,5 +1,8 @@
 class Hashtag < ActiveRecord::Base
-  # validates :name, presence: true, uniqueness: true
+  belongs_to :user
+  belongs_to :bookmark
+  # validates :name, presence: true
+
   has_many :hashtaggings 
   has_many :bookmarks, through: :hashtaggings
 end
