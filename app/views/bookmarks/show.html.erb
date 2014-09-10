@@ -17,10 +17,10 @@
         <%= image_tag ("#{@url.thumbnail_url}"), class: "thumb" %>
       <% end %>
      
-      <% if @title.include?("http://") || ("https://") %>
-        <h1><%= link_to @title, "#{@url}" %></h1>
+      <% if @bookmark.title.include?("http://") || ("https://") %>
+        <h1><%= link_to @bookmark.title, "#{@url}" %></h1>
       <% else %>
-        <h1><%= link_to @title, "https://#{@url}" %></h1>
+        <h1><%= link_to @bookmark.title, "https://#{@url}" %></h1>
       <% end %>
         <!--Once I changed to @parse_url, links without http:// stopped working--> 
       

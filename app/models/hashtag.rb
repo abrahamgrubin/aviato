@@ -5,4 +5,6 @@ class Hashtag < ActiveRecord::Base
 
   has_many :hashtaggings 
   has_many :bookmarks, through: :hashtaggings
+
+  #if hashtag == hashtag.new then add the created bookmark to the hashtag.  
 end

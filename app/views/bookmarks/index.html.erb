@@ -1,9 +1,9 @@
 <div class="container">
-  <h1>My Bookmarks</h1>
+  <h1>Hashtag</h1>
 	<% @bookmarks.each do |bookmark| %>
 	<h2><%= link_to bookmark.title, bookmark %></h2>
     <% bookmark.hashtags.each do |hashtag| %>
-      <p><%= link_to hashtag.name, tag_path(hashtag) %></p>
+      <p><%= link_to hashtag.name, hashtag_path(hashtag) %></p>
 
   	<% end %>
   <% end %>

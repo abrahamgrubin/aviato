@@ -13,19 +13,20 @@ class BookmarksController < ApplicationController
     else
       @bookmarks = current_user.bookmarks
     end
+    #@hashtag = @bookmark.find(params[:id]).hashtags
   end 
   
   def show
     @bookmark = current_user.bookmarks.find(params[:id])
-    @title = @bookmark.title
-    @url = embedly_api.oembed(:url => @title).first
+    
+    @url = embedly_api.oembed(:url => @bookmark.title).first
   end  
 
   def create
     @bookmark = current_user.bookmarks.build(params.require(:bookmark).permit(:title, :content))
     if @bookmark.save
       HashtagExtractor.new(current_user, @bookmark).create_hashtags
-      binding.pry
+      #binding.pry
       redirect_to @bookmark, notice: "Bookmark Saved"
     else
       flash[:error] = "There was an error saving your bookmark, please try again"
