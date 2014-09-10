@@ -2,21 +2,15 @@ class HashtagsController < ApplicationController
   require 'embedly'
   require 'json'
 
-	def create 
-	  
-	end
-
 	def show
 	  @hashtag = Hashtag.find(params[:id])
-	 
 	  @bookmark = @hashtag.bookmarks
-	 # @url = embedly_api.oembed(:url => @bookmark.first.title) 
+	  #@url = embedly_api.oembed(:url => @bookmark.first.title)
 	end
     
-    def index
-       @hashtags = current_user.hashtags
-       
-    end 
+  def index
+    @hashtags = Hashtag.all
+  end 
 
 	def destroy 
 	end

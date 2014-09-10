@@ -5,6 +5,8 @@ Aviato::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   resources :bookmarks
+  get 'tags/:tag', to: 'bookmarks#index', as: :tag
+
 
   authenticated :user do 
   	root to: 'bookmarks#index', as: 'authenticated_user'
@@ -12,7 +14,4 @@ Aviato::Application.routes.draw do
 
   root to: 'welcome#index'
   resources :bookmarks
-
-  get 'hashtags/:hashtag', to:'bookmark#index', as: :hashtag
-
 end

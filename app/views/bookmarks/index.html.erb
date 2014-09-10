@@ -1,16 +1,11 @@
 <div class="container">
-<h1>My Bookmarks</h1>
-  <ul>
-  	<% @bookmark.each do |bookmark| %>
-  	
-  	<li><%= link_to bookmark.title, bookmark %></li>
-  	  <% bookmark.hashtags.each do |hashtag| %>
-  	  <ul>
-  	    <li><%= hashtag.name %></li>
-  	  </ul>
-  	  <% end %>
-  	<% end %>
-  </ul>
+  <h1>Hashtag</h1>
+	<% @bookmarks.each do |bookmark| %>
+	<h2><%= link_to bookmark.title, bookmark %></h2>
+    <% bookmark.hashtags.each do |hashtag| %>
+      <p><%= link_to hashtag.name, hashtag_path(hashtag) %></p>
 
-<button type="button" class="btn btn-custom"><%= link_to 'Create Bookmark', new_bookmark_path %></button>
+  	<% end %>
+  <% end %>
+  <%= link_to 'Create Bookmark', new_bookmark_path %>
 </div>
