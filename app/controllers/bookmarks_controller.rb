@@ -19,7 +19,8 @@ class BookmarksController < ApplicationController
   def show
     @bookmark = current_user.bookmarks.find(params[:id])
     
-    @url = embedly_api.oembed(:url => @bookmark.title).first
+    @url = embedly_api.extract(:url => @bookmark.title).first.provider_url
+    #binding.pry
   end  
 
   def create
